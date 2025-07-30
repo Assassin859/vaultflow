@@ -1,0 +1,57 @@
+{
+  "name": "vaultflow-defi-lending",
+  "version": "1.0.0",
+  "description": "DeFi Lending Protocol on Sapphire Network",
+  "main": "index.js",
+  "scripts": {
+    "test": "npx hardhat test",
+    "compile": "npx hardhat compile",
+    "deploy:local": "npx hardhat run scripts/deploy.js --network hardhat",
+    "deploy:sapphire-testnet": "npx hardhat run scripts/deploy.js --network sapphire-testnet",
+    "deploy:sapphire-mainnet": "npx hardhat run scripts/deploy.js --network sapphire-mainnet",
+    "node": "npx hardhat node",
+    "clean": "npx hardhat clean",
+    "coverage": "npx hardhat coverage",
+    "gas-report": "REPORT_GAS=true npx hardhat test",
+    "verify:sapphire-testnet": "npx hardhat verify --network sapphire-testnet",
+    "verify:sapphire-mainnet": "npx hardhat verify --network sapphire-mainnet"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/your-username/defi-sapphire-lending.git"
+  },
+  "keywords": [
+    "defi",
+    "lending",
+    "borrowing",
+    "sapphire",
+    "privacy",
+    "oasis"
+  ],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/your-username/defi-sapphire-lending/issues"
+  },
+  "homepage": "https://github.com/your-username/defi-sapphire-lending#readme",
+  "devDependencies": {
+    "@nomiclabs/hardhat-ethers": "^2.2.3",
+    "@nomiclabs/hardhat-waffle": "^2.0.6",
+    "@oasisprotocol/sapphire-hardhat": "^1.0.0",
+    "@openzeppelin/hardhat-upgrades": "^1.28.0",
+    "@types/mkdirp": "^1.0.2",
+    "chai": "^4.3.7",
+    "ethereum-waffle": "^4.0.10",
+    "hardhat": "^2.19.4",
+    "hardhat-gas-reporter": "^1.0.9",
+    "solidity-coverage": "^0.8.5"
+  },
+  "dependencies": {
+    "@chainlink/contracts": "^0.6.1",
+    "@oasisprotocol/sapphire-contracts": "^0.2.14",
+    "@openzeppelin/contracts": "^4.9.6",
+    "@openzeppelin/contracts-upgradeable": "^4.9.6",
+    "dotenv": "^16.3.1",
+    "ethers": "^5.7.2"
+  }
+}
