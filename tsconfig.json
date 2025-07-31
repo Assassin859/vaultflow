@@ -27,24 +27,20 @@
     }
   },
   "include": [
-    "src/**/*",
-    "src/**/*.ts",
-    "src/**/*.tsx",
-    "index.html"
+    "src"
   ],
   "exclude": [
-    "node_modules",
-    "dist",
-    "build",
     "test",
-    "tests",
     "contracts",
     "scripts",
     "hardhat.config.ts",
     "ignition",
     "cache",
     "artifacts",
-    "typechain-types"
+    "typechain-types",
+    "node_modules",
+    "dist",
+    "build"
   ],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
