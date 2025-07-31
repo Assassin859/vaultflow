@@ -1,26 +1,50 @@
 {
   "compilerOptions": {
-    "target": "es2020",
-    "module": "commonjs",
-    "lib": ["es2020"],
-    "outDir": "./dist",
-    "rootDir": "./",
-    "strict": true,
-    "esModuleInterop": true,
+    "target": "ES2020",
+    "useDefineForClassFields": true,
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
     "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true,
+
+    /* Bundler mode */
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
     "resolveJsonModule": true,
-    "types": ["node"]
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react-jsx",
+
+    /* Linting */
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+
+    /* Path mapping */
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"]
+    }
   },
   "include": [
-    "scripts/**/*",
-    "test/**/*",
-    "typechain-types/**/*"
+    "src/**/*",
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "index.html"
   ],
   "exclude": [
     "node_modules",
     "dist",
+    "build",
+    "test",
+    "tests",
+    "contracts",
+    "scripts",
+    "hardhat.config.ts",
+    "ignition",
     "cache",
-    "artifacts"
-  ]
+    "artifacts",
+    "typechain-types"
+  ],
+  "references": [{ "path": "./tsconfig.node.json" }]
 }
