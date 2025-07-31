@@ -78,5 +78,9 @@ export function useAssetBalance(assetAddress: string) {
 export function useAssetAllowance(assetAddress: string, spenderAddress: string) {
   const { address } = useAccount();
   
+  if (!address) {
+    return { data: undefined, isLoading: false, refetch: () => {} };
+  }
+  
   return useERC20Read(assetAddress, 'allowance', [address, spenderAddress]);
 }

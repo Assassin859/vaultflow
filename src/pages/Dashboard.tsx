@@ -1,4 +1,5 @@
 import { useAccount } from 'wagmi';
+import { formatUnits } from 'viem';
 import { 
   TrendingUp, 
   DollarSign, 
@@ -15,15 +16,13 @@ import { Link } from 'react-router-dom';
 import StatCard from '../components/UI/StatCard';
 import HealthFactorBadge from '../components/UI/HealthFactorBadge';
 import AssetIcon from '../components/UI/AssetIcon';
-import LoadingSpinner from '../components/UI/LoadingSpinner';
 
 import { useUserAccountData, useUserBalances } from '../hooks/useUserData';
 import { usePrices } from '../hooks/usePrices';
 import { formatBalance, formatUSD } from '../utils/helpers';
-import { SUPPORTED_ASSETS } from '../utils/constants';
 
 export default function Dashboard() {
-  const { address, isConnected } = useAccount();
+  const { isConnected } = useAccount();
   const { data: accountData, isLoading: accountLoading } = useUserAccountData();
   const { data: balances, isLoading: balancesLoading } = useUserBalances();
   const { data: prices, isLoading: pricesLoading } = usePrices();

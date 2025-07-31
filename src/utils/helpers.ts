@@ -89,6 +89,11 @@ export function calculateUtilizationRate(totalBorrow: bigint, totalSupply: bigin
   return Number((totalBorrow * 10000n) / totalSupply) / 100;
 }
 
+export function calculateAPY(rate: number): number {
+  // Simple APY calculation - can be enhanced with compound interest
+  return rate;
+}
+
 export function debounce<T extends (...args: any[]) => any>(
   func: T,
   wait: number

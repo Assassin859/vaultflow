@@ -16,15 +16,13 @@ import SupplyModal from '../components/Modals/SupplyModal';
 import BorrowModal from '../components/Modals/BorrowModal';
 
 import { usePrices } from '../hooks/usePrices';
-import { useUserBalances } from '../hooks/useUserData';
-import { formatUSD, formatPercentage, calculateAPY } from '../utils/helpers';
+import { formatUSD, formatPercentage } from '../utils/helpers';
 import { SUPPORTED_ASSETS } from '../utils/constants';
 import { Asset } from '../types';
 
 export default function Markets() {
   const { isConnected } = useAccount();
   const { data: prices, isLoading: pricesLoading } = usePrices();
-  const { data: balances, isLoading: balancesLoading } = useUserBalances();
   
   const [selectedAsset, setSelectedAsset] = useState<Asset | null>(null);
   const [modalType, setModalType] = useState<'supply' | 'borrow' | null>(null);

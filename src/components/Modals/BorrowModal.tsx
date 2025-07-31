@@ -12,7 +12,7 @@ import { useUserAccountData } from '../../hooks/useUserData';
 import { useAssetPrice } from '../../hooks/usePrices';
 import { Asset } from '../../types';
 import { CONTRACT_ADDRESSES, LENDING_POOL_ABI } from '../../utils/contracts';
-import { formatBalance, formatUSD, parseInputAmount, isValidAmount, calculateHealthFactor } from '../../utils/helpers';
+import { formatUSD, parseInputAmount, isValidAmount, calculateHealthFactor } from '../../utils/helpers';
 import { DEFAULT_REFERRAL_CODE, INTEREST_RATE_MODE } from '../../utils/constants';
 
 interface BorrowModalProps {
@@ -31,7 +31,7 @@ export default function BorrowModal({ asset, isOpen, onClose }: BorrowModalProps
   const { data: price } = useAssetPrice(asset.address);
 
   const { writeContract: writeBorrow, data: borrowHash } = useWriteContract();
-  const { isLoading: borrowLoading, isSuccess: borrowSuccess } = useWaitForTransactionReceipt({
+  const { isSuccess: borrowSuccess } = useWaitForTransactionReceipt({
     hash: borrowHash,
   });
 
@@ -70,9 +70,9 @@ export default function BorrowModal({ asset, isOpen, onClose }: BorrowModalProps
         abi: LENDING_POOL_ABI,
         functionName: 'borrow',
         args: [
-          asset.address,
+          asset.address as `0x${string}`,
           parsedAmount,
-          interestRateMode,
+          BigInt(interestRateMode),
           DEFAULT_REFERRAL_CODE,
           address
         ],

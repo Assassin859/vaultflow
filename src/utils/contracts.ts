@@ -1,10 +1,10 @@
 // Contract addresses from your deployment
 export const CONTRACT_ADDRESSES = {
-  LENDING_POOL: '0x0000000000000000000000000000000000000000', // Replace with actual address
-  PRICE_ORACLE: '0x0000000000000000000000000000000000000000', // Replace with actual address
-  MOCK_USDC: '0x0000000000000000000000000000000000000000', // Replace with actual address
-  MOCK_DAI: '0x0000000000000000000000000000000000000000', // Replace with actual address
-  MOCK_WETH: '0x0000000000000000000000000000000000000000', // Replace with actual address
+  LENDING_POOL: '0x0000000000000000000000000000000000000000' as `0x${string}`, // Replace with actual address
+  PRICE_ORACLE: '0x0000000000000000000000000000000000000000' as `0x${string}`, // Replace with actual address
+  MOCK_USDC: '0x0000000000000000000000000000000000000000' as `0x${string}`, // Replace with actual address
+  MOCK_DAI: '0x0000000000000000000000000000000000000000' as `0x${string}`, // Replace with actual address
+  MOCK_WETH: '0x0000000000000000000000000000000000000000' as `0x${string}`, // Replace with actual address
 } as const;
 
 // Contract ABIs (simplified for key functions)

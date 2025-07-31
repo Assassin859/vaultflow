@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useAccount, useWriteContract, useWaitForTransactionReceipt } from 'wagmi';
-import { parseUnits, formatUnits } from 'viem';
+import { formatUnits } from 'viem';
 import { X, ArrowUpRight, AlertCircle, CheckCircle } from 'lucide-react';
 import toast from 'react-hot-toast';
 
@@ -35,11 +35,11 @@ export default function SupplyModal({ asset, isOpen, onClose }: SupplyModalProps
   const { writeContract: writeApprove, data: approveHash } = useWriteContract();
   const { writeContract: writeSupply, data: supplyHash } = useWriteContract();
   
-  const { isLoading: approveLoading, isSuccess: approveSuccess } = useWaitForTransactionReceipt({
+  const { isSuccess: approveSuccess } = useWaitForTransactionReceipt({
     hash: approveHash,
   });
   
-  const { isLoading: supplyLoading, isSuccess: supplySuccess } = useWaitForTransactionReceipt({
+  const { isSuccess: supplySuccess } = useWaitForTransactionReceipt({
     hash: supplyHash,
   });
 
@@ -93,7 +93,7 @@ export default function SupplyModal({ asset, isOpen, onClose }: SupplyModalProps
           address: CONTRACT_ADDRESSES.LENDING_POOL as `0x${string}`,
           abi: LENDING_POOL_ABI,
           functionName: 'deposit',
-          args: [asset.address, parsedAmount, address, DEFAULT_REFERRAL_CODE],
+          args: [asset.address as `0x${string}`, parsedAmount, address, DEFAULT_REFERRAL_CODE],
           value: parsedAmount,
         });
       } else {
@@ -102,7 +102,7 @@ export default function SupplyModal({ asset, isOpen, onClose }: SupplyModalProps
           address: CONTRACT_ADDRESSES.LENDING_POOL as `0x${string}`,
           abi: LENDING_POOL_ABI,
           functionName: 'deposit',
-          args: [asset.address, parsedAmount, address, DEFAULT_REFERRAL_CODE],
+          args: [asset.address as `0x${string}`, parsedAmount, address, DEFAULT_REFERRAL_CODE],
         });
       }
     } catch (error) {

@@ -1,4 +1,4 @@
-import { DivideIcon as LucideIcon } from 'lucide-react';
+import { LucideIcon } from 'lucide-react';
 import LoadingSpinner from './LoadingSpinner';
 
 interface StatCardProps {
