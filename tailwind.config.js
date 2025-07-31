@@ -67,6 +67,7 @@ export default {
           800: '#991b1b',
           900: '#7f1d1d',
         },
+        border: '#e4e4e7',
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif'],
