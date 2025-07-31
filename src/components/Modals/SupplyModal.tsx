@@ -47,7 +47,7 @@ export default function SupplyModal({ asset, isOpen, onClose }: SupplyModalProps
   const amountUSD = Number(formatUnits(parsedAmount, asset.decimals)) * price;
   const needsApproval = !asset.isNative && 
                        allowance !== undefined && 
-                       parsedAmount > allowance;
+                       parsedAmount > (allowance as bigint);
 
   useEffect(() => {
     if (approveSuccess) {
@@ -114,12 +114,12 @@ export default function SupplyModal({ asset, isOpen, onClose }: SupplyModalProps
 
   const handleMaxClick = () => {
     if (balance) {
-      const maxAmount = formatUnits(balance, asset.decimals);
+      const maxAmount = formatUnits(balance as bigint, asset.decimals);
       setAmount(maxAmount);
     }
   };
 
-  const isAmountValid = isValidAmount(amount) && parsedAmount <= (balance || 0n);
+  const isAmountValid = isValidAmount(amount) && parsedAmount <= ((balance as bigint) || 0n);
   const canProceed = isAmountValid && parsedAmount > 0n;
 
   if (!isOpen) return null;
@@ -167,7 +167,7 @@ export default function SupplyModal({ asset, isOpen, onClose }: SupplyModalProps
                 <div className="flex items-center justify-between mb-2">
                   <label className="label">Amount to Supply</label>
                   <div className="text-sm text-slate-500">
-                    Balance: {formatBalance(balance || 0n, asset.decimals)} {asset.symbol}
+                    Balance: {formatBalance((balance as bigint) || 0n, asset.decimals)} {asset.symbol}
                   </div>
                 </div>
                 
@@ -269,7 +269,7 @@ export default function SupplyModal({ asset, isOpen, onClose }: SupplyModalProps
                 <div className="flex items-center space-x-2 mt-4 p-3 bg-error-50 rounded-lg">
                   <AlertCircle className="w-4 h-4 text-error-600 flex-shrink-0" />
                   <p className="text-sm text-error-700">
-                    {parsedAmount > (balance || 0n) 
+                    {parsedAmount > ((balance as bigint) || 0n) 
                       ? 'Insufficient balance' 
                       : 'Please enter a valid amount'
                     }
