@@ -1,5 +1,5 @@
 import { formatUnits, parseUnits } from 'viem';
-import { Asset } from '../types';
+import type { Asset } from '../types';
 
 export function formatBalance(balance: bigint, decimals: number, precision = 4): string {
   const formatted = formatUnits(balance, decimals);
@@ -83,13 +83,6 @@ export function getAssetByAddress(address: string, assets: Asset[]): Asset | und
   );
 }
 
-export function calculateAPY(rate: bigint): number {
-  // Convert from ray (1e27) to percentage
-  const ratePerSecond = Number(formatUnits(rate, 27));
-  const secondsPerYear = 365 * 24 * 60 * 60;
-  const apy = (Math.pow(1 + ratePerSecond, secondsPerYear) - 1) * 100;
-  return apy;
-}
 
 export function calculateUtilizationRate(totalBorrow: bigint, totalSupply: bigint): number {
   if (totalSupply === 0n) return 0;

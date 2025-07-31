@@ -1,20 +1,20 @@
 import { useAccount } from 'wagmi';
 import { useLendingPoolRead, useERC20Read } from './useContract';
 import { SUPPORTED_ASSETS } from '../utils/constants';
-import { UserAccountData, UserBalance } from '../types';
+import type { UserAccountData, UserBalance } from '../types';
 
 export function useUserAccountData() {
   const { address } = useAccount();
   
   const { data, isLoading, error, refetch } = useLendingPoolRead('getUserAccountData', [address]);
   
-  const userAccountData: UserAccountData | undefined = data ? {
-    totalCollateralETH: data[0],
-    totalDebtETH: data[1],
-    availableBorrowsETH: data[2],
-    currentLiquidationThreshold: data[3],
-    ltv: data[4],
-    healthFactor: data[5],
+  const userAccountData: UserAccountData | undefined = data && Array.isArray(data) ? {
+    totalCollateralETH: data[0] as bigint,
+    totalDebtETH: data[1] as bigint,
+    availableBorrowsETH: data[2] as bigint,
+    currentLiquidationThreshold: data[3] as bigint,
+    ltv: data[4] as bigint,
+    healthFactor: data[5] as bigint,
   } : undefined;
   
   return {
@@ -40,7 +40,7 @@ export function useUserBalances() {
   
   const userBalances: UserBalance[] = SUPPORTED_ASSETS.map((asset, index) => ({
     asset,
-    balance: balanceQueries[index].data || 0n,
+    balance: (balanceQueries[index]?.data as bigint) || 0n,
     balanceUSD: 0, // Will be calculated with price data
     aTokenBalance: 0n, // Will be fetched separately
     borrowBalance: 0n, // Will be fetched separately
@@ -56,7 +56,7 @@ export function useUserBalances() {
     refetch: () => {
       // Refetch all balance queries
       balanceQueries.forEach(query => {
-        if ('refetch' in query) {
+        if (query && 'refetch' in query && typeof query.refetch === 'function') {
           query.refetch();
         }
       });

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useAccount, useWriteContract, useWaitForTransactionReceipt } from 'wagmi';
 import { parseUnits, formatUnits } from 'viem';
 import { X, ArrowUpRight, AlertCircle, CheckCircle } from 'lucide-react';
@@ -45,7 +45,7 @@ export default function SupplyModal({ asset, isOpen, onClose }: SupplyModalProps
 
   const parsedAmount = parseInputAmount(amount, asset.decimals);
   const amountUSD = Number(formatUnits(parsedAmount, asset.decimals)) * price;
-  const needsApproval = asset.address !== '0x0000000000000000000000000000000000000000' && 
+  const needsApproval = !asset.isNative && 
                        allowance !== undefined && 
                        parsedAmount > allowance;
 

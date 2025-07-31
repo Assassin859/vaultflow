@@ -1,4 +1,3 @@
-import React from 'react';
 import { Asset } from '../../types';
 
 interface AssetIconProps {

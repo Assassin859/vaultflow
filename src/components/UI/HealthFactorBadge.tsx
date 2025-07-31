@@ -1,4 +1,3 @@
-import React from 'react';
 import { formatUnits } from 'viem';
 import { getHealthFactorColor, getHealthFactorStatus } from '../../utils/helpers';
 import { Shield, AlertTriangle, AlertCircle } from 'lucide-react';

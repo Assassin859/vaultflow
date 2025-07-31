@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useAccount } from 'wagmi';
 import { 
   TrendingUp, 
@@ -122,7 +122,6 @@ export default function Markets() {
             <tbody>
               {SUPPORTED_ASSETS.map((asset) => {
                 const price = prices[asset.address]?.priceUSD || 0;
-                const userBalance = balances?.find(b => b.asset.address === asset.address);
                 
                 return (
                   <tr key={asset.address} className="border-b border-slate-100 hover:bg-slate-50 transition-colors duration-200">

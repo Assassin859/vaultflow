@@ -1,8 +1,7 @@
-import React from 'react';
+import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { ConnectButton } from '@rainbow-me/rainbowkit';
 import { Wallet, TrendingUp, Shield, Menu, X } from 'lucide-react';
-import { useState } from 'react';
 
 const navigation = [
   { name: 'Dashboard', href: '/', icon: TrendingUp },

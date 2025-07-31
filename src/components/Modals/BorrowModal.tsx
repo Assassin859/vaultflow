@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useAccount, useWriteContract, useWaitForTransactionReceipt } from 'wagmi';
 import { parseUnits, formatUnits } from 'viem';
 import { X, ArrowDownRight, AlertCircle, CheckCircle, AlertTriangle } from 'lucide-react';
@@ -24,7 +24,7 @@ interface BorrowModalProps {
 export default function BorrowModal({ asset, isOpen, onClose }: BorrowModalProps) {
   const { address } = useAccount();
   const [amount, setAmount] = useState('');
-  const [interestRateMode, setInterestRateMode] = useState(INTEREST_RATE_MODE.VARIABLE);
+  const [interestRateMode, setInterestRateMode] = useState<number>(INTEREST_RATE_MODE.VARIABLE);
   const [step, setStep] = useState<'input' | 'borrow' | 'success'>('input');
 
   const { data: accountData } = useUserAccountData();

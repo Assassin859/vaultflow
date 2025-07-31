@@ -1,4 +1,3 @@
-import React from 'react';
 import { useAccount } from 'wagmi';
 import { 
   TrendingUp, 
@@ -44,15 +43,15 @@ export default function Dashboard() {
   }
 
   const totalCollateralUSD = accountData 
-    ? Number(accountData.totalCollateralETH) / 1e18 * (prices['0x0000000000000000000000000000000000000000']?.priceUSD || 0)
+    ? Number(formatUnits(accountData.totalCollateralETH, 18)) * (prices['0x0000000000000000000000000000000000000000']?.priceUSD || 0)
     : 0;
 
   const totalDebtUSD = accountData 
-    ? Number(accountData.totalDebtETH) / 1e18 * (prices['0x0000000000000000000000000000000000000000']?.priceUSD || 0)
+    ? Number(formatUnits(accountData.totalDebtETH, 18)) * (prices['0x0000000000000000000000000000000000000000']?.priceUSD || 0)
     : 0;
 
   const availableBorrowUSD = accountData 
-    ? Number(accountData.availableBorrowsETH) / 1e18 * (prices['0x0000000000000000000000000000000000000000']?.priceUSD || 0)
+    ? Number(formatUnits(accountData.availableBorrowsETH, 18)) * (prices['0x0000000000000000000000000000000000000000']?.priceUSD || 0)
     : 0;
 
   return (

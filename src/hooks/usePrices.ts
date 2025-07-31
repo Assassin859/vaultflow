@@ -1,6 +1,6 @@
 import { usePriceOracleRead } from './useContract';
 import { SUPPORTED_ASSETS } from '../utils/constants';
-import { PriceData } from '../types';
+import type { PriceData } from '../types';
 import { formatUnits } from 'viem';
 
 export function usePrices() {
@@ -12,10 +12,10 @@ export function usePrices() {
   
   SUPPORTED_ASSETS.forEach((asset, index) => {
     const priceResult = priceQueries[index];
-    if (priceResult.data) {
+    if (priceResult?.data) {
       priceData[asset.address] = {
-        price: priceResult.data,
-        priceUSD: Number(formatUnits(priceResult.data, 18)),
+        price: priceResult.data as bigint,
+        priceUSD: Number(formatUnits(priceResult.data as bigint, 18)),
         timestamp: Date.now(),
       };
     }
@@ -26,7 +26,7 @@ export function usePrices() {
   
   const refetch = () => {
     priceQueries.forEach(query => {
-      if (query.refetch) {
+      if (query?.refetch) {
         query.refetch();
       }
     });
@@ -43,7 +43,7 @@ export function usePrices() {
 export function useAssetPrice(assetAddress: string) {
   const { data, isLoading, error, refetch } = usePriceOracleRead('getPrice', [assetAddress]);
   
-  const priceUSD = data ? Number(formatUnits(data, 18)) : 0;
+  const priceUSD = data ? Number(formatUnits(data as bigint, 18)) : 0;
   
   return {
     data: priceUSD,

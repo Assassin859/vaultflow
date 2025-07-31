@@ -1,4 +1,4 @@
-import { Asset } from '../types';
+import type { Asset } from '../types';
 import { CONTRACT_ADDRESSES } from './contracts';
 
 export const SUPPORTED_ASSETS: Asset[] = [
